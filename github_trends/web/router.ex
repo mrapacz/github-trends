@@ -10,6 +10,9 @@ defmodule GithubTrends.Router do
   end
 
   pipeline :api do
+    plug :fetch_session
+    plug :fetch_flash
+    plug :is_user_logged?
     plug :accepts, ["json"]
   end
 
@@ -26,8 +29,20 @@ defmodule GithubTrends.Router do
     get "/:provider/callback", AuthController, :callback
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", GithubTrends do
-  #   pipe_through :api
-  # end
+  scope "/api", GithubTrends do
+    pipe_through :api
+    get "/me", UserController, :get_user_info
+  end
+
+  defp is_user_logged?(conn, _) do
+    user = get_session(conn, :current_user)
+    case user do
+      nil -> 
+        conn
+        |> redirect(to: "/")
+        |> halt
+      _ -> 
+        conn
+    end
+  end
 end
