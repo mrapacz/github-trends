@@ -1,0 +1,13 @@
+version: '3'
+services:
+  github_trends:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: mix phoenix.server
+    volumes:
+      - ./github_trends/:/github_trends
+      - /github_trends/deps
+      - /github_trends/node_modules
+    ports:
+      - "4000:4000"
