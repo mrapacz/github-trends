@@ -1,2 +1,10 @@
-<div id="elm-container"></div>
+<!-- web/templates/page/index.html.eex -->
+<%= if @current_user do %>
+  <h2>Welcome, <%= @current_user.name %>!</h2>
+  <img src=<%= @current_user.avatar %>>
+<% else %>
+  <%= link to: auth_path(@conn, :index, "github"), class: "btn btn-primary" do %>
+    Sign in with Github
+  <% end %>
+<% end %>
 
