@@ -19,6 +19,13 @@ defmodule GithubTrends.Router do
     get "/", PageController, :index
   end
 
+  scope "/auth", GithubTrends do
+    pipe_through :browser # Use the default browser stack
+    get "/:provider", AuthController, :index
+
+    get "/:provider/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", GithubTrends do
   #   pipe_through :api
