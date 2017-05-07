@@ -17,7 +17,7 @@ defmodule GithubTrends.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {GithubTrends, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :oauth2]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :oauth2, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -34,6 +34,7 @@ defmodule GithubTrends.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:oauth2, "~> 0.3"}]
+     {:oauth2, "~> 0.3"},
+     {:httpoison, "~> 0.11.1"}]
   end
 end
