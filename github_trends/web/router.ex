@@ -34,6 +34,8 @@ defmodule GithubTrends.Router do
 
     get "/me", UserController, :get_user_info
     get "/repositories/most_popular", GithubSearchController, :get_most_popular_repositories
+    get "/users/most_popular", GithubSearchController, :get_most_popular_users
+    get "/issues/most_popular", GithubSearchController, :get_most_popular_issues
   end
 
   defp is_user_logged?(conn, _) do
