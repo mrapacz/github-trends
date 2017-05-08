@@ -17,21 +17,10 @@ defmodule GithubTrends.GithubSearchController do
   )
 
   def get_most_popular_repositories(conn, params) do
-    q_param =
-      case Map.take(params, ["language", "created"]) do
-        %{"language" => language, "created" => created} ->
-          "language:" <> language <> " created:>" <> created
-        %{"language" => language} ->
-          "language:" <> language
-        %{"created" => created} ->
-          "created:>" <> created
-        _ ->
-          nil
-      end
-
     parsed_data =
       params
-      |> parse_parameters(q_param)
+      |> parse_q_parameters(["language", "created"])
+      |> parse_parameters(params)
       |> make_request("search/repositories")
       |> extract_data
       |> parse_data(@expected_repositories_fields)
@@ -40,21 +29,10 @@ defmodule GithubTrends.GithubSearchController do
   end
 
   def get_most_popular_users(conn, params) do
-    q_param =
-      case Map.take(params, ["followers", "repos"]) do
-        %{"followers" => followers, "repos" => repos} ->
-          "followers:>" <> followers <> " repos:>" <> repos
-        %{"followers" => followers} ->
-          "followers:>" <> followers
-        %{"repos" => repos} ->
-          "repos:>" <> repos
-        _ ->
-          nil
-      end
-
     parsed_data =
       params
-      |> parse_parameters(q_param)
+      |> parse_q_parameters(["followers", "repos"])
+      |> parse_parameters(params)
       |> make_request("search/users")
       |> extract_data
       |> parse_data(@expected_users_fields)
@@ -63,20 +41,10 @@ defmodule GithubTrends.GithubSearchController do
   end
 
   def get_most_popular_issues(conn, params) do
-    q_param =
-      case Map.take(params, ["language", "comments"]) do
-        %{"language" => language, "comments" => comments} ->
-          "language:" <> language <> " comments:>" <> comments
-        %{"language" => language} ->
-          "language:" <> language
-        %{"comments" => comments} ->
-          "comments:>" <> comments
-        _ ->
-          nil
-      end
     parsed_data =
       params
-      |> parse_parameters(q_param)
+      |> parse_q_parameters(["language", "comments"])
+      |> parse_parameters(params)
       |> make_request("search/issues")
       |> extract_data
       |> parse_data(@expected_issues_fields)
@@ -84,7 +52,23 @@ defmodule GithubTrends.GithubSearchController do
     json conn, parsed_data
   end
 
-  defp parse_parameters(params, q_params) do
+  defp parse_q_parameters(params, q_params_list) do
+    case Map.take(params, q_params_list) do
+      params ->
+        Enum.reduce params, "", fn({key, value}, acc) ->
+          case key do
+            key when key in ["created", "repos", "followers", "comments"] ->
+              acc <> key <> ":>" <> value <> " "
+            key when key == "language" ->
+              acc <> key <> ":" <> value <> " "
+          end
+        end
+      _ ->
+        nil
+    end
+  end
+
+  defp parse_parameters(q_params, params) do
     regular_params = Map.take(params, ["sort", "order"])
     case q_params do
       nil ->
