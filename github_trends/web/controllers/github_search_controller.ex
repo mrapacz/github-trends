@@ -56,10 +56,10 @@ defmodule GithubTrends.GithubSearchController do
     case Map.take(params, q_params_list) do
       params ->
         Enum.reduce params, "", fn({key, value}, acc) ->
-          case key do
-            key when key in ["created", "repos", "followers", "comments"] ->
+          cond do
+            key in ["created", "repos", "followers", "comments"] ->
               acc <> key <> ":>" <> value <> " "
-            key when key == "language" ->
+            key == "language" ->
               acc <> key <> ":" <> value <> " "
           end
         end
