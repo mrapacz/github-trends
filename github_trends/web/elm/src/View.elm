@@ -10,33 +10,35 @@ import String exposing (concat)
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ page model ]
+  div []
+    [ page model ]
 
 
 page : Model -> Html Msg
 page model =
-    case model.route of
-        Models.LoginRoute ->
-            loginView model
+  case model.route of
+    Models.LoginRoute ->
+      mainView model
 
-        Models.NotFoundRoute ->
-            notFoundView
+    Models.NotFoundRoute ->
+      notFoundView
 
 
 
 -- LOGIN VIEW
 
 
-loginView : Model -> Html Msg
-loginView model =
-    div []
-        [ p [] [ text "Welcome to Github Trends!" ]
-        ]
+mainView : Model -> Html Msg
+mainView model =
+  div []
+    [ p [] [ text "Welcome to GitHub trends" ]
+    , p [] [ text model.name ]
+    , img [ src model.avatar ] []
+    ]
 
 
 notFoundView : Html Msg
 notFoundView =
-    div []
-        [ text "Not found"
-        ]
+  div []
+    [ text "Not found"
+    ]
