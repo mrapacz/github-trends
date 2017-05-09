@@ -90,11 +90,6 @@ defmodule GithubTrends.GithubSearchController do
   end
 
   defp parse_data(data, fields) do
-    case data do
-      data ->
-        Enum.map data, fn x -> Map.take x, fields end
-      [] ->
-        []
-    end
+      Enum.map data, fn x -> Map.take x, fields end
   end
 end
