@@ -1,7 +1,7 @@
 module Routing exposing (..)
 
-import Navigation exposing (Location)
 import Models exposing (Route(..))
+import Navigation exposing (Location)
 import UrlParser exposing (..)
 
 

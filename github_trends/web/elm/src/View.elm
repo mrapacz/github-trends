@@ -3,8 +3,8 @@ module View exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
-import Msgs exposing (Msg(..))
 import Models exposing (Model)
+import Msgs exposing (Msg(..))
 import String exposing (concat)
 
 
@@ -24,9 +24,7 @@ page model =
       notFoundView
 
 
-
 -- LOGIN VIEW
-
 
 mainView : Model -> Html Msg
 mainView model =

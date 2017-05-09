@@ -1,8 +1,8 @@
 module Msgs exposing (..)
 
-import Navigation exposing (Location)
 import Http
 import Models exposing (UserRecord)
+import Navigation exposing (Location)
 
 
 type Msg
