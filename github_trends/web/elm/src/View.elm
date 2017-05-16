@@ -3,11 +3,12 @@ module View exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput, onClick)
-import Models exposing (Model, SortRepositories(..), SortOrder(..), RepositoryRecord)
+import Models exposing (Model)
+import Repository.Models exposing (SortRepositories(..), SortOrder(..), RepositoryRecord)
 import Msgs exposing (Msg(..))
 import String exposing (concat)
 import Select
-import Api exposing (requestRepositoriesData)
+import Repository.Api exposing (requestRepositoriesData)
 
 
 view : Model -> Html Msg

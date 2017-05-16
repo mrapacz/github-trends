@@ -4,7 +4,7 @@ import Debug exposing (log)
 import Models exposing (Model)
 import Msgs exposing (Msg(..))
 import Routing exposing (parseLocation)
-import Api exposing (requestRepositoriesData)
+import Repository.Api exposing (requestRepositoriesData)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

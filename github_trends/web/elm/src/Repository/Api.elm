@@ -1,12 +1,13 @@
-module Api exposing (..)
+module Repository.Api exposing (..)
 
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
-import Models exposing (RepositoriesParams, RepositoryRecord)
-import User.Models exposing (UserRecord)
-import Msgs exposing (Msg)
 import String exposing (toLower)
 import Tuple exposing (first, second)
+
+import Repository.Models exposing (RepositoriesParams, RepositoryRecord)
+import User.Models exposing (UserRecord)
+import Msgs exposing (Msg)
 
 
 
@@ -38,7 +39,7 @@ decodeRepositoryRecord =
         (Decode.field "html_url" Decode.string)
         (Decode.field "full_name" Decode.string)
         (Decode.field "forks_count" Decode.int)
-        (Decode.field "description" (oneOf [Decode.string, null ""]))
+        (Decode.field "description" (oneOf [ Decode.string, null "" ]))
 
 
 decodeRepositoriesList : Decode.Decoder (List RepositoryRecord)

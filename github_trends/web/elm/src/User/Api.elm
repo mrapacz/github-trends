@@ -1,9 +1,11 @@
 module User.Api exposing (requestUserInfo)
 
 import Http
-import User.Models exposing (UserRecord)
 import Json.Decode as Decode
+
+import User.Models exposing (UserRecord)
 import Msgs exposing (Msg)
+
 
 getUserInfo : Http.Request UserRecord
 getUserInfo =

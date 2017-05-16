@@ -1,15 +1,15 @@
 module App exposing (..)
 
-import User.Api exposing (requestUserInfo)
 import Json.Decode as Decode
 import Html exposing (..)
 import Http
-import Models exposing (Model, initialModel)
-import Msgs exposing (Msg)
 import Navigation exposing (Location)
 import Routing
 import Update exposing (update)
 import View exposing (view)
+import Models exposing (Model, initialModel)
+import Msgs exposing (Msg)
+import User.Api exposing (requestUserInfo)
 
 
 init : Location -> ( Model, Cmd Msg )
