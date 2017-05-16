@@ -1,10 +1,10 @@
 module App exposing (..)
 
-import Api exposing (requestUserInfo)
+import User.Api exposing (requestUserInfo)
 import Json.Decode as Decode
 import Html exposing (..)
 import Http
-import Models exposing (Model, initialModel, UserRecord)
+import Models exposing (Model, initialModel)
 import Msgs exposing (Msg)
 import Navigation exposing (Location)
 import Routing

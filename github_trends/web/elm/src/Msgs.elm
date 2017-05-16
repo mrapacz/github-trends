@@ -1,7 +1,8 @@
 module Msgs exposing (..)
 
 import Http
-import Models exposing (UserRecord, SortRepositories, SortOrder, RepositoryRecord)
+import Models exposing (SortRepositories, SortOrder, RepositoryRecord)
+import User.Models exposing (UserRecord)
 import Navigation exposing (Location)
 
 

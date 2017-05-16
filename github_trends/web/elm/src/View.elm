@@ -44,8 +44,8 @@ mainView model =
             , p [] [ text model.name ]
             , img [ src model.avatar ] []
             , h3 [] [ text "Repositories:" ]
-            , input [ placeholder "created", onInput NewCreatedRepositories ] []
-            , input [ placeholder "language", onInput NewLanguageRepositories ] []
+            , input [ placeholder "2016-01-01", onInput NewCreatedRepositories ] []
+            , input [ placeholder "Ruby", onInput NewLanguageRepositories ] []
             , Select.from sortRepositoriesOptions NewSortRepositoriesOption
             , Select.from orderRepositoriesOptions NewOrderRepositoriesOption
             , button [ onClick FetchRepositories ] [ text "Submit" ]
@@ -61,15 +61,13 @@ listRepositories repositories =
 displayRepository : RepositoryRecord -> Html Msg
 displayRepository repository =
     div []
-        [ li [] [ text repository.full_name ]
-        , ul []
-            [ li [] [ text <| toString <| repository.watchers ]
-            , li [] [ text <| toString <| repository.stargazers_count ]
-            , li [] [ text repository.language ]
-            , li [] [ text repository.html_url ]
-            , li [] [ text <| toString <| repository.forks_count ]
-            , li [] [ text repository.description ]
-            ]
+        [ h4 [] [ text repository.full_name ]
+        , li [] [ text <| "Description: " ++ repository.description ]
+        , li [] [ text <| "Repository url: " ++ repository.html_url ]
+        , li [] [ text <| "Language: " ++ repository.language ]
+        , li [] [ text <| "Watchers: " ++ (toString repository.watchers) ]
+        , li [] [ text <| "Stargazers: " ++ (toString repository.stargazers_count) ]
+        , li [] [ text <| "Forks count: " ++ (toString repository.forks_count) ]
         ]
 
 

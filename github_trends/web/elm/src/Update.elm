@@ -18,7 +18,7 @@ update msg model =
                 ( { model | route = newRoute }, Cmd.none )
 
         FetchRepositories ->
-            ( model, requestRepositoriesData )
+            ( model, requestRepositoriesData model.repositoriesParams )
 
         LoadUserInfo (Ok userData) ->
             ( { model
@@ -35,7 +35,11 @@ update msg model =
             ( { model | repositories = repositories }, Cmd.none )
 
         LoadRepositoriesData (Err message) ->
-            ( model, Cmd.none )
+            let
+                debugMessage =
+                    Debug.log "err" message
+            in
+                ( model, Cmd.none )
 
         NewCreatedRepositories created ->
             let

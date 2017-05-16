@@ -63,13 +63,6 @@ type SortRepositories
 -- API
 
 
-type alias UserRecord =
-    { name : String
-    , avatar : String
-    }
-
-
-
 -- ROUTING
 
 
