@@ -8,7 +8,7 @@ import Msgs exposing (Msg)
 getUserInfo: Http.Request UserRecord
 getUserInfo =
   let
-    url="http://127.0.0.1:4000/api/me"
+    url="http://localhost:4000/api/me"
   in
     Http.get url decodeUserRecord
 
