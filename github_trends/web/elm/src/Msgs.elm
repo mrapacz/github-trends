@@ -6,5 +6,5 @@ import Navigation exposing (Location)
 
 
 type Msg
-  = OnLocationChange Location
-  | LoadUserInfo (Result Http.Error UserRecord)
+    = OnLocationChange Location
+    | LoadUserInfo (Result Http.Error UserRecord)
