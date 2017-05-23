@@ -1,26 +1,34 @@
-module Resources.User.Models exposing (
-    UserRecord, UserParams, SortUsers(..)
-  )
+module Resources.User.Models
+    exposing
+        ( UserRecord
+        , UserParams
+        , SortUsers(..)
+        , sortUsersOptions
+        )
 
 import Resources.Common.Models exposing (SortOrder)
 
 
 type alias UserRecord =
-  { score: Int
-  , login: String
-  , html_url: String
-  , avatar_url: String
-  }
+    { score : Int
+    , login : String
+    , html_url : String
+    , avatar_url : String
+    }
 
 
 type alias UserParams =
-  { repos: String
-  , followers: String
-  , sort: SortUsers
-  , order: SortOrder
-  }
+    { repos : String
+    , followers : String
+    , sort : SortUsers
+    , order : SortOrder
+    }
 
 
 type SortUsers
     = Repositories
     | Followers
+
+
+sortUsersOptions =
+    [ Repositories, Followers ]

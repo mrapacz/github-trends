@@ -10,11 +10,12 @@ listUsers : List UserRecord -> Html Msg
 listUsers users =
     ul [] (List.map displayUser users)
 
-displayUser: UserRecord -> Html Msg
+
+displayUser : UserRecord -> Html Msg
 displayUser user =
     div []
         [ h4 [] [ text user.login ]
-        , li [] [ text <| "User url: ", a [ href user.html_url ] [ text user.html_url] ]
+        , li [] [ text <| "User url: ", a [ href user.html_url ] [ text user.html_url ] ]
         , li [] [ img [ src user.avatar_url ] [] ]
         , li [] [ text <| "User score: " ++ (toString user.score) ]
         ]

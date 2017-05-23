@@ -1,4 +1,4 @@
-module Resources.Repository.Models exposing (RepositoryRecord, RepositoriesParams, SortRepositories(..))
+module Resources.Repository.Models exposing (RepositoryRecord, RepositoriesParams, SortRepositories(..), sortRepositoriesOptions)
 
 import Resources.Common.Models exposing (SortOrder)
 
@@ -26,3 +26,7 @@ type SortRepositories
     = Stars
     | Forks
     | Updated
+
+
+sortRepositoriesOptions =
+    [ Stars, Forks, Updated ]

@@ -1,5 +1,6 @@
 module Models exposing (..)
 
+import Resources.Issue.Models exposing (IssueParams, IssueRecord, SortIssues(..))
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord, SortRepositories(..))
 import Resources.User.Models exposing (UserParams, UserRecord, SortUsers(..))
 import Resources.Common.Models exposing (SortOrder(..))
@@ -12,6 +13,7 @@ type alias Model =
     , fetchedResources : FetchedResources
     , repositoriesParams : RepositoriesParams
     , usersParams : UserParams
+    , issuesParams : IssueParams
     }
 
 
@@ -33,17 +35,28 @@ initialModel route =
         , sort = Repositories
         , order = Desc
         }
+    , issuesParams =
+        { language = ""
+        , comments = ""
+        , sort = Comments
+        , order = Desc
+        }
     }
+
 
 
 -- DISPLAY
 
+
 type FetchedResources
     = RepositoryRecordList (List RepositoryRecord)
     | UserRecordList (List UserRecord)
+    | IssueRecordList (List IssueRecord)
+
 
 
 -- ROUTING
+
 
 type Route
     = LoginRoute

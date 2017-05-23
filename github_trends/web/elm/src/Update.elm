@@ -3,6 +3,7 @@ module Update exposing (..)
 import Debug exposing (log)
 import Models exposing (Model, FetchedResources(..))
 import Msgs exposing (Msg(..))
+import Resources.Issue.Api exposing (requestIssuesData)
 import Routing exposing (parseLocation)
 import Resources.Repository.Api exposing (requestRepositoriesData)
 import Resources.User.Api exposing (requestUsersData)
@@ -29,9 +30,7 @@ update msg model =
         LoadUserInfo (Err message) ->
             ( model, Cmd.none )
 
-
         -- REPOSITORIES LOAD
-
         LoadRepositoriesData (Ok repositories) ->
             ( { model | fetchedResources = RepositoryRecordList repositories }, Cmd.none )
 
@@ -43,12 +42,10 @@ update msg model =
                 ( model, Cmd.none )
 
         -- REPOSITORIES FETCH
-
         FetchRepositories ->
             ( model, requestRepositoriesData model.repositoriesParams )
 
         -- REPOSITORIES UPDATE
-
         NewCreatedRepositories created ->
             let
                 oldRepositoriesParams =
@@ -90,7 +87,6 @@ update msg model =
                 ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
 
         -- USERS LOAD
-
         LoadUsersData (Ok users) ->
             ( { model | fetchedResources = UserRecordList users }, Cmd.none )
 
@@ -102,12 +98,10 @@ update msg model =
                 ( model, Cmd.none )
 
         -- USERS FETCH
-
         FetchUsers ->
-            (model, requestUsersData model.usersParams)
+            ( model, requestUsersData model.usersParams )
 
         -- USERS UPDATE
-
         NewReposUsers repos ->
             let
                 oldUsersParams =
@@ -147,3 +141,59 @@ update msg model =
                     log "users order" { oldUsersParams | order = orderOption }
             in
                 ( { model | usersParams = newUsersParams }, Cmd.none )
+
+        -- ISSUES LOAD
+        LoadIssuesData (Ok issues) ->
+            ( { model | fetchedResources = IssueRecordList issues }, Cmd.none )
+
+        LoadIssuesData (Err message) ->
+            let
+                debugMessage =
+                    Debug.log "err issues" message
+            in
+                ( model, Cmd.none )
+
+        -- ISSUES FETCH
+        FetchIssues ->
+            ( model, requestIssuesData model.issuesParams )
+
+        -- ISSUES UPDATE
+        NewCommentsIssues comments ->
+            let
+                oldIssuesParams =
+                    model.issuesParams
+
+                newIssuesParams =
+                    log "issues comments" { oldIssuesParams | comments = comments }
+            in
+                ( { model | issuesParams = newIssuesParams }, Cmd.none )
+
+        NewLanguageIssues language ->
+            let
+                oldIssuesParams =
+                    model.issuesParams
+
+                newIssuesParams =
+                    log "issues language" { oldIssuesParams | language = language }
+            in
+                ( { model | issuesParams = newIssuesParams }, Cmd.none )
+
+        NewSortIssuesOption sortOption ->
+            let
+                oldIssuesParams =
+                    model.issuesParams
+
+                newIssuesParams =
+                    log "issues sort" { oldIssuesParams | sort = sortOption }
+            in
+                ( { model | issuesParams = newIssuesParams }, Cmd.none )
+
+        NewOrderIssuesOption orderOption ->
+            let
+                oldIssuesParams =
+                    model.issuesParams
+
+                newIssuesParams =
+                    log "issues order" { oldIssuesParams | order = orderOption }
+            in
+                ( { model | issuesParams = newIssuesParams }, Cmd.none )
