@@ -4,7 +4,10 @@ elixir:
 os:
 - linux
 
-before_script: cd mrapacz/github_trends
+before_install: 
+- echo "DO THESE LOGS EVEN WORK????????????"
+before_script: 
+- cd mrapacz/github_trends
 
 env:
   global:
