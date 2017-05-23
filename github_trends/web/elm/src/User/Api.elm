@@ -1,8 +1,9 @@
-module Api exposing (..)
+module User.Api exposing (requestUserInfo)
 
 import Http
 import Json.Decode as Decode
-import Models exposing (UserRecord)
+
+import User.Models exposing (UserRecord)
 import Msgs exposing (Msg)
 
 
