@@ -6,3 +6,7 @@ os:
 
 before_script:
 - cd github_trends
+
+env:
+  global:
+    TRAVIS_BUILD_DIR=github_trends
