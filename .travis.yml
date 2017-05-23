@@ -5,7 +5,7 @@ os:
 - linux
 
 before_install: 
-- cd mrapacz/github_trends
+- cd github_trends
 
 env:
   global:
