@@ -8,6 +8,7 @@ before_install:
 deploy:
   provider: heroku
   app: githubtrends
+  skip_cleanup: true
   on:
     all_branches: true
   api_key:
