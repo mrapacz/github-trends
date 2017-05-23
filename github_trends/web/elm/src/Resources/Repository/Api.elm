@@ -1,14 +1,13 @@
-module Repository.Api exposing (..)
+module Resources.Repository.Api exposing (..)
 
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
 import String exposing (toLower)
 import Tuple exposing (first, second)
 
-import Repository.Models exposing (RepositoriesParams, RepositoryRecord)
+import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord)
 import User.Models exposing (UserRecord)
 import Msgs exposing (Msg)
-
 
 
 getRepositoriesData : RepositoriesParams -> Http.Request (List RepositoryRecord)
