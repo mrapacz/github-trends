@@ -1,7 +1,4 @@
-module Resources.Repository.Models exposing (
-    RepositoryRecord, RepositoriesParams,
-    SortRepositories(..)
-  )
+module Resources.Repository.Models exposing (RepositoryRecord, RepositoriesParams, SortRepositories(..))
 
 import Resources.Common.Models exposing (SortOrder)
 

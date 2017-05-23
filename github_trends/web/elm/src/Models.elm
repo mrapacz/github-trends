@@ -1,11 +1,7 @@
 module Models exposing (..)
 
-import Resources.Repository.Models exposing (
-    RepositoriesParams, RepositoryRecord, SortRepositories(..)
-  )
-import Resources.User.Models exposing (
-    UserParams, UserRecord, SortUsers(..)
-  )
+import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord, SortRepositories(..))
+import Resources.User.Models exposing (UserParams, UserRecord, SortUsers(..))
 import Resources.Common.Models exposing (SortOrder(..))
 
 
