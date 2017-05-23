@@ -4,7 +4,7 @@ elixir:
 os:
 - linux
 
-before_script: cd github_trends
+before_script: cd mrapacz/github_trends
 
 env:
   global:
