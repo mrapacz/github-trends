@@ -1,17 +1,20 @@
 language: elixir
 elixir:
-  - 1.4.2
-otp_release: 
-  - 19
+- 1.4.2
+otp_release:
+- 19
 script:
-  - mix test
-group: 
-  - stable
+- mix test
+group:
+- stable
 dist:
-  - precise
-os: 
-  - linux
-
+- precise
+os:
+- linux
 env:
   global:
-    - TRAVIS_BUILD_DIR=github_trends
+  - TRAVIS_BUILD_DIR=github_trends
+deploy:
+  provider: heroku
+  api_key:
+    secure: fXgu666y0iYTSQ2Uc1ukFeLrAZPvXwvIaE1QROIbRUET9DPskAjIwiElAiLAa51S3Dv8mJ+n3E1F6xrqqcotiNQcc3OFNIP/ukg3afanzvZCuP5Zooz7UVGyKOcb/t/02S3wG0nUA1X21yNvds5XmApdDopIAn5BEw7doeb6zOsQbNGdpA5AFNwnOcxkYzgdmIIG2gNCcqno4L07FBDAoEQsbCsD+hR+n1QpwalIvy+siYcYbegpp0USaxubps500SXUyu5IdF2+aQDToVx9PPM3T0bX+C3MJUiQ0ihcy22cY/CrEtTkWSBMmDl/JdJx91KSjVjqU5fQxzPcmwHhFKEFAxqNpaa2lfPtzsKRMVGKAS6eHuecqd6F6DWoRPE7KsUQYR0bOSZD2CmUHEJdf3+wfBYx6E2E5SViLkJsj6AZGJU/TdKMJGx9B2AROQzhxsEYht0/nEWJC4x33y95iP0M6dUAHQYKJ/XHsL8y0oOvcnow8RKifvN6UviSMtAl6Up1ZrlLvvvrJLnDsL16vX9aa456GqcKsUqu22SIIIx3QMp8Ff+cCku5qFBAwiqRD01P4FrNwPoGb8TO92l5AmCqr1YaaSdIXcQ88BmLL+b5lvA1vWqZX01eFPfo+7BtAk3O5rSdIcj8m8Coq/8jlxHYv4ud6YGk2KgvYtYKF58=
