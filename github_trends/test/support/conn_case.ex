@@ -17,12 +17,10 @@ defmodule GithubTrends.ConnCase do
 
   using do
     quote do
-      # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
       import GithubTrends.Router.Helpers
 
-      # The default endpoint for testing
       @endpoint GithubTrends.Endpoint
     end
   end
