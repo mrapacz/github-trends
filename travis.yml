@@ -11,3 +11,7 @@ dist:
   - precise
 os: 
   - linux
+
+env:
+  global:
+    - TRAVIS_BUILD_DIR=github_trends
