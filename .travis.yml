@@ -4,7 +4,7 @@ elixir:
 os:
 - linux
 
-script: build.sh
+before_script: cd github_trends
 
 env:
   global:
