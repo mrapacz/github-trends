@@ -15,11 +15,11 @@ defmodule Github do
     ])
   end
 
-  def authorize_url!() do
+  def authorize_url!(params \\ []) do
     OAuth2.Client.authorize_url!(client(), scope: "user,public_repo")
   end
 
-  def get_token!(params \\ [], _) do
+  def get_token!(params \\ [], headers \\ []) do
     OAuth2.Client.get_token!(client(), Keyword.merge(params, client_secret: client().client_secret))
   end
 

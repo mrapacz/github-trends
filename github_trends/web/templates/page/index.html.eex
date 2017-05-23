@@ -1,3 +1,4 @@
+<!-- web/templates/page/index.html.eex -->
 <%= if @current_user do %>
   <div id="elm-container"></div>
 <% else %>
