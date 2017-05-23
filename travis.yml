@@ -3,4 +3,12 @@ elixir:
   - 1.4.2
 otp_release: 
   - 19
+script:
+  - "mix test"
+group: 
+  - "stable"
+dist: 
+  - "precise"
+os: 
+  - "linux"
 
