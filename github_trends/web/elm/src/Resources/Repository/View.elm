@@ -1,7 +1,7 @@
 module Resources.Repository.View exposing (listRepositories)
 
 import Html exposing (..)
-import Html.Attributes exposing (href)
+import Html.Attributes exposing (class, href)
 import Msgs exposing (Msg)
 import Resources.Repository.Models exposing (RepositoryRecord)
 
@@ -13,7 +13,7 @@ listRepositories repositories =
 
 displayRepository : RepositoryRecord -> Html Msg
 displayRepository repository =
-    div []
+    div [ class "list-element" ]
         [ h4 [] [ text repository.full_name ]
         , li [] [ text <| "Description: " ++ repository.description ]
         , li [] [ text <| "Repository url: ", a [ href repository.html_url ] [ text repository.html_url ] ]

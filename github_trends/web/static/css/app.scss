@@ -1,0 +1,30 @@
+$icon-font-path: "/fonts/"; /* use fonts from priv/static/fonts/ */
+@import "bootstrap"; /* imports node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss */
+/* Custom Stuff */
+
+
+.content-section {
+  float: right;
+  width: 80%;
+}
+
+.user-section {
+  float: left;
+  width: 20%;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.results-section {
+  margin-top: 50px;
+}
+
+.list-element {
+  margin-bottom: 20px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
