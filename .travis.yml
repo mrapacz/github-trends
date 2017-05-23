@@ -3,5 +3,13 @@ elixir:
 - 1.4.2
 os:
 - linux
-before_install: 
+before_install:
 - cd github_trends
+deploy:
+  provider: heroku
+  app: githubtrends
+  skip_cleanup: true
+  on:
+    all_branches: true
+  api_key:
+    secure: QmPraWqj4tn+EM5m2jWohHkzxMXA6ErsD9UNCd9qGf17VT0h7JVUs2p2VKwsnLKG7yWeq+SrWhVDPlTMWWFpyPNfHiP8zgjuAYgJUOS6d6RF14/YfjpWCXWatXMOSXjRZhstlnIpoO6Uzk4CM8Ukl5i6KPjHYldOZHxbMLC1iPNgbD0CdhxnO5GcTJNbrnEoliEGKzcTtipMIE77oaEO6vB/MOIAZfIkoOzFQZ52bFnv+XjBbi1FdvMaGJErhVFJET75OH9YwnmisbFXYT27HWmtfHl0N+tK6Ax24OzE5JdUzJ3Z2Up92UNBa/Jwlv2LCTHczmge2Em7nlaGZBwq9Wy9eQIiwDlda7f/T2DAvcHWOXwJ24fzLFephwuPqEoHZv2BZnCOG87DtWnmAztabsaxTnmVadl7uGPzfPWZYTpQFU+aCEMudOswjzqoZhVb1JDPcL2TkCZLgXCfgfRfzwxg0tRteUFate1XptBpIctrMoMwugr1P2P8SZFwwhr9iyNOXp+rxKRNSRO6zFNJC+C7SiKxCXpwZylslayjDa1ZsO0walhmOfKpuL5HBTQIv9OjNInNwcOxE3GlLU+iFvEXG2JpMZlDODWnGpv8K1x2xR7/CN91JnYnxppeMjDCHiiZFvBZmuBj36vanX6uvr4L2do3q/2BxOzzEUTxo9Y=
