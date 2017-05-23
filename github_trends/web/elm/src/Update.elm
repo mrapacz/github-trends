@@ -1,10 +1,11 @@
 module Update exposing (..)
 
 import Debug exposing (log)
-import Models exposing (Model)
+import Models exposing (Model, FetchedResources(..))
 import Msgs exposing (Msg(..))
 import Routing exposing (parseLocation)
-import Repository.Api exposing (requestRepositoriesData)
+import Resources.Repository.Api exposing (requestRepositoriesData)
+import Resources.User.Api exposing (requestUsersData)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -17,9 +18,6 @@ update msg model =
             in
                 ( { model | route = newRoute }, Cmd.none )
 
-        FetchRepositories ->
-            ( model, requestRepositoriesData model.repositoriesParams )
-
         LoadUserInfo (Ok userData) ->
             ( { model
                 | name = userData.name
@@ -31,15 +29,25 @@ update msg model =
         LoadUserInfo (Err message) ->
             ( model, Cmd.none )
 
+
+        -- REPOSITORIES LOAD
+
         LoadRepositoriesData (Ok repositories) ->
-            ( { model | repositories = repositories }, Cmd.none )
+            ( { model | fetchedResources = RepositoryRecordList repositories }, Cmd.none )
 
         LoadRepositoriesData (Err message) ->
             let
                 debugMessage =
-                    Debug.log "err" message
+                    Debug.log "err repositories" message
             in
                 ( model, Cmd.none )
+
+        -- REPOSITORIES FETCH
+
+        FetchRepositories ->
+            ( model, requestRepositoriesData model.repositoriesParams )
+
+        -- REPOSITORIES UPDATE
 
         NewCreatedRepositories created ->
             let
@@ -47,7 +55,7 @@ update msg model =
                     model.repositoriesParams
 
                 newRepositoriesParams =
-                    log "Nowy created" { oldRepositoriesParams | created = created }
+                    log "repositories created" { oldRepositoriesParams | created = created }
             in
                 ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
 
@@ -57,7 +65,7 @@ update msg model =
                     model.repositoriesParams
 
                 newRepositoriesParams =
-                    log "Nowy language" { oldRepositoriesParams | language = language }
+                    log "repositories language" { oldRepositoriesParams | language = language }
             in
                 ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
 
@@ -67,7 +75,7 @@ update msg model =
                     model.repositoriesParams
 
                 newRepositoriesParams =
-                    log "Nowy sort" { oldRepositoriesParams | sort = sortOption }
+                    log "repositories sort" { oldRepositoriesParams | sort = sortOption }
             in
                 ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
 
@@ -77,6 +85,65 @@ update msg model =
                     model.repositoriesParams
 
                 newRepositoriesParams =
-                    log "Nowy order" { oldRepositoriesParams | order = orderOption }
+                    log "repositories order" { oldRepositoriesParams | order = orderOption }
             in
                 ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
+
+        -- USERS LOAD
+
+        LoadUsersData (Ok users) ->
+            ( { model | fetchedResources = UserRecordList users }, Cmd.none )
+
+        LoadUsersData (Err message) ->
+            let
+                debugMessage =
+                    Debug.log "err users" message
+            in
+                ( model, Cmd.none )
+
+        -- USERS FETCH
+
+        FetchUsers ->
+            (model, requestUsersData model.usersParams)
+
+        -- USERS UPDATE
+
+        NewReposUsers repos ->
+            let
+                oldUsersParams =
+                    model.usersParams
+
+                newUsersParams =
+                    log "users repos" { oldUsersParams | repos = repos }
+            in
+                ( { model | usersParams = newUsersParams }, Cmd.none )
+
+        NewFollowersUsers followers ->
+            let
+                oldUsersParams =
+                    model.usersParams
+
+                newUsersParams =
+                    log "users followers" { oldUsersParams | followers = followers }
+            in
+                ( { model | usersParams = newUsersParams }, Cmd.none )
+
+        NewSortUsersOption sortOption ->
+            let
+                oldUsersParams =
+                    model.usersParams
+
+                newUsersParams =
+                    log "users sort" { oldUsersParams | sort = sortOption }
+            in
+                ( { model | usersParams = newUsersParams }, Cmd.none )
+
+        NewOrderUsersOption orderOption ->
+            let
+                oldUsersParams =
+                    model.usersParams
+
+                newUsersParams =
+                    log "users order" { oldUsersParams | order = orderOption }
+            in
+                ( { model | usersParams = newUsersParams }, Cmd.none )

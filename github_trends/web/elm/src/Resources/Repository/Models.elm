@@ -1,4 +1,9 @@
-module Repository.Models exposing (RepositoryRecord, RepositoriesParams, SortOrder(..), SortRepositories(..))
+module Resources.Repository.Models exposing (
+    RepositoryRecord, RepositoriesParams,
+    SortRepositories(..)
+  )
+
+import Resources.Common.Models exposing (SortOrder)
 
 
 type alias RepositoryRecord =
@@ -18,11 +23,6 @@ type alias RepositoriesParams =
     , sort : SortRepositories
     , order : SortOrder
     }
-
-
-type SortOrder
-    = Asc
-    | Desc
 
 
 type SortRepositories
