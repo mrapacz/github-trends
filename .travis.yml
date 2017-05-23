@@ -3,10 +3,5 @@ elixir:
 - 1.4.2
 os:
 - linux
-
 before_install: 
 - cd github_trends
-
-env:
-  global:
-    TRAVIS_BUILD_DIR=github_trends
