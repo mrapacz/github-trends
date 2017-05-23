@@ -29,16 +29,16 @@ getUsersData params =
 
 decodeUsersRecord : Decode.Decoder UserRecord
 decodeUsersRecord =
-  Decode.map4 UserRecord
-    (Decode.field "score" Decode.int)
-    (Decode.field "login" Decode.string)
-    (Decode.field "html_url" Decode.string)
-    (Decode.field "avatar_url" Decode.string)
+    Decode.map4 UserRecord
+        (Decode.field "score" Decode.int)
+        (Decode.field "login" Decode.string)
+        (Decode.field "html_url" Decode.string)
+        (Decode.field "avatar_url" Decode.string)
 
 
 decodeUsersList : Decode.Decoder (List UserRecord)
 decodeUsersList =
-  Decode.list decodeUsersRecord
+    Decode.list decodeUsersRecord
 
 
 requestUsersData : UserParams -> Cmd Msg

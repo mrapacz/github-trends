@@ -4,7 +4,6 @@ import Http
 import Json.Decode as Decode exposing (null, oneOf)
 import String exposing (toLower)
 import Tuple exposing (first, second)
-
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord)
 import User.Models exposing (UserRecord)
 import Msgs exposing (Msg)
