@@ -49,44 +49,38 @@ mainView model =
             [ Asc, Desc ]
     in
         div []
-            [
-            div [ class "user-section" ] [
-              img [ class "user-avatar", src model.avatar ] []
-              , p [ class "user-name" ] [ text model.name ]
-            ]
-
+            [ div [ class "user-section" ]
+                [ img [ class "user-avatar", src model.avatar ] []
+                , p [ class "user-name" ] [ text model.name ]
+                ]
             , h2 [] [ text "Welcome to GitHub trends" ]
-
-            , div [ class "content-section" ] [
-                h3 [] [ text "Repositories:" ]
-              , input [ placeholder "Date, eg: 2016-01-01", onInput NewCreatedRepositories ] []
-              , input [ placeholder "Language", onInput NewLanguageRepositories ] []
-              , Select.from sortRepositoriesOptions NewSortRepositoriesOption
-              , Select.from orderOptions NewOrderRepositoriesOption
-              , button [ onClick FetchRepositories ] [ text "Submit" ]
-
-              , h3 [] [ text "Users:" ]
-              , input [ placeholder "Repos number", onInput NewReposUsers ] []
-              , input [ placeholder "Followers number", onInput NewFollowersUsers ] []
-              , Select.from sortUsersOptions NewSortUsersOption
-              , Select.from orderOptions NewOrderUsersOption
-              , button [ onClick FetchUsers ] [ text "Submit" ]
-
-              , h3 [] [ text "Issues:" ]
-              , input [ placeholder "Comments number", onInput NewCommentsIssues ] []
-              , input [ placeholder "Language", onInput NewLanguageIssues ] []
-              , Select.from sortIssuesOptions NewSortIssuesOption
-              , Select.from orderOptions NewOrderIssuesOption
-              , button [ onClick FetchIssues ] [ text "Submit" ]
-
-              , div [ class "results-section" ] [
-                displayFetchedResouces model.fetchedResources
-              ]
-            ]
+            , div [ class "content-section" ]
+                [ h3 [] [ text "Repositories:" ]
+                , input [ placeholder "Date, eg: 2016-01-01", onInput NewCreatedRepositories ] []
+                , input [ placeholder "Language", onInput NewLanguageRepositories ] []
+                , Select.from sortRepositoriesOptions NewSortRepositoriesOption
+                , Select.from orderOptions NewOrderRepositoriesOption
+                , button [ onClick FetchRepositories ] [ text "Submit" ]
+                , h3 [] [ text "Users:" ]
+                , input [ placeholder "Repos number", onInput NewReposUsers ] []
+                , input [ placeholder "Followers number", onInput NewFollowersUsers ] []
+                , Select.from sortUsersOptions NewSortUsersOption
+                , Select.from orderOptions NewOrderUsersOption
+                , button [ onClick FetchUsers ] [ text "Submit" ]
+                , h3 [] [ text "Issues:" ]
+                , input [ placeholder "Comments number", onInput NewCommentsIssues ] []
+                , input [ placeholder "Language", onInput NewLanguageIssues ] []
+                , Select.from sortIssuesOptions NewSortIssuesOption
+                , Select.from orderOptions NewOrderIssuesOption
+                , button [ onClick FetchIssues ] [ text "Submit" ]
+                , div [ class "results-section" ]
+                    [ displayFetchedResouces model.fetchedResources
+                    ]
+                ]
             ]
 
 
-displayFetchedResouces: FetchedResources -> Html Msg
+displayFetchedResouces : FetchedResources -> Html Msg
 displayFetchedResouces fetchedResources =
     case fetchedResources of
         RepositoryRecordList repositories ->
@@ -97,6 +91,7 @@ displayFetchedResouces fetchedResources =
 
         IssueRecordList issues ->
             listIssues issues
+
 
 
 -- NOT FOUND
