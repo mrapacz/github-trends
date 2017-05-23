@@ -9,4 +9,3 @@ config :github_trends, GithubTrends.Endpoint,
 
 config :logger, level: :info
 
-import_config "prod.secret.exs"
