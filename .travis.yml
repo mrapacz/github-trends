@@ -11,9 +11,8 @@ dist:
 - precise
 os:
 - linux
-env:
-  global:
-  - TRAVIS_BUILD_DIR=github_trends
+before_script:
+- cd github_trends
 deploy:
   provider: heroku
   api_key:
