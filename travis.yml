@@ -4,11 +4,10 @@ elixir:
 otp_release: 
   - 19
 script:
-  - "mix test"
+  - mix test
 group: 
-  - "stable"
-dist: 
-  - "precise"
+  - stable
+dist:
+  - precise
 os: 
-  - "linux"
-
+  - linux
