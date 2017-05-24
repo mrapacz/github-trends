@@ -10,7 +10,7 @@ getUserInfo : Http.Request UserRecord
 getUserInfo =
     let
         url =
-            "http://localhost:4000/api/me"
+            "https://githubtrends.herokuapp.com/api/me"
     in
         Http.get url decodeUserRecord
 
