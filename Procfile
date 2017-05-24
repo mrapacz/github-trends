@@ -1,2 +1,2 @@
-web: mix phoenix.server
+web: mix phoenix.server >> log.txt
 
