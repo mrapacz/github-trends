@@ -14,7 +14,7 @@ defmodule GithubTrends.Mixfile do
 
   def application do
     [mod: {GithubTrends, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :oauth2, :httpoison]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :oauth2, :cors_plug, :httpoison]]
   end
 
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
@@ -28,6 +28,7 @@ defmodule GithubTrends.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:oauth2, "~> 0.3"},
+     {:cors_plug, "~> 1.2"},
      {:httpoison, "~> 0.11.1"}]
   end
 end
