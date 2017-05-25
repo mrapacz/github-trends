@@ -53,29 +53,26 @@ defmodule GithubTrends.GithubSearchController do
   end
 
   defp parse_q_parameters(params, q_params_list) do
-    case Map.take(params, q_params_list) do
-      params ->
-        Enum.reduce params, "", fn({key, value}, acc) ->
-          cond do
-            key in ["created", "repos", "followers", "comments"] ->
-              acc <> key <> ":>" <> value <> " "
-            key == "language" ->
-              acc <> key <> ":" <> value <> " "
-          end
-        end
-      _ ->
-        nil
+    params = Map.take(params, q_params_list)
+
+    Enum.reduce params, "", fn({key, value}, acc) ->
+      cond do
+        key in ["created", "repos", "followers", "comments"] ->
+          acc <> key <> ":>" <> value <> " "
+        key == "language" ->
+          acc <> key <> ":" <> value <> " "
+      end
     end
   end
 
   defp parse_parameters(q_params, params) do
     regular_params = Map.take(params, ["sort", "order"])
-    case q_params do
-      nil ->
+
+    if q_params == nil do
         regular_params
-      _ ->
+    else
         Map.put(regular_params, "q", q_params)
-      end
+    end
   end
 
   defp make_request(params, endpoint) do

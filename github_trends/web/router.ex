@@ -42,13 +42,11 @@ defmodule GithubTrends.Router do
   end
 
   defp is_user_logged?(conn, _) do
-    user = get_session(conn, :current_user)
-    case user do
-      nil -> 
+    if get_session(conn, :current_user) == nil do
         conn
         |> redirect(to: "/")
         |> halt
-      _ -> 
+    else
         conn
     end
   end
