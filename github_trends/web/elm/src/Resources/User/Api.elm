@@ -22,7 +22,7 @@ getUsersData params =
             (String.join "&") <| List.map (\record -> first record ++ "=" ++ second record) paramsList
 
         url =
-            "http://localhost:4000/api/users/most_popular?" ++ parsedParamsList
+            "https://githubtrends.herokuapp.com/api/users/most_popular?" ++ parsedParamsList
     in
         Http.get url decodeUsersList
 
