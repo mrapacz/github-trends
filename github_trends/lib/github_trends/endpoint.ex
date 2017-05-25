@@ -27,5 +27,6 @@ defmodule GithubTrends.Endpoint do
     key: "_github_trends_key",
     signing_salt: "iw6A7H5q"
 
+  plug CORSPlug
   plug GithubTrends.Router
 end

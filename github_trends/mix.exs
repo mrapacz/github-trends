@@ -28,6 +28,7 @@ defmodule GithubTrends.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:oauth2, "~> 0.3"},
+     {:cors_plug, "~> 1.2"},
      {:httpoison, "~> 0.11.1"}]
   end
 end
