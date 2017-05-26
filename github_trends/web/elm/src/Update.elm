@@ -43,7 +43,7 @@ update msg model =
 
         -- REPOSITORIES FETCH
         FetchRepositories ->
-            ( model, requestRepositoriesData model.repositoriesParams )
+            ( model, requestRepositoriesData model.host model.repositoriesParams )
 
         -- REPOSITORIES UPDATE
         NewCreatedRepositories created ->
@@ -99,7 +99,7 @@ update msg model =
 
         -- USERS FETCH
         FetchUsers ->
-            ( model, requestUsersData model.usersParams )
+            ( model, requestUsersData model.host model.usersParams )
 
         -- USERS UPDATE
         NewReposUsers repos ->
@@ -155,7 +155,7 @@ update msg model =
 
         -- ISSUES FETCH
         FetchIssues ->
-            ( model, requestIssuesData model.issuesParams )
+            ( model, requestIssuesData model.host model.issuesParams )
 
         -- ISSUES UPDATE
         NewCommentsIssues comments ->

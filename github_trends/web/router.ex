@@ -12,7 +12,9 @@ defmodule GithubTrends.Router do
   pipeline :api do
     plug :fetch_session
     plug :fetch_flash
-    plug :is_user_logged?
+    if System.get_env("MIX_ENV") == "prod" do
+      plug :is_user_logged?
+    end
     plug :accepts, ["json"]
   end
 
@@ -24,6 +26,7 @@ defmodule GithubTrends.Router do
 
   scope "/auth", GithubTrends do
     pipe_through :browser # Use the default browser stack
+
 
     get "/:provider", AuthController, :index
     get "/:provider/callback", AuthController, :callback

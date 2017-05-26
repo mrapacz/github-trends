@@ -2,14 +2,15 @@ module Resources.User.Api exposing (..)
 
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
+import Models exposing (Hostname, getHost)
 import Resources.User.Models exposing (UserParams, UserRecord)
 import Msgs exposing (Msg)
 import String exposing (toLower)
 import Tuple exposing (first, second)
 
 
-getUsersData : UserParams -> Http.Request (List UserRecord)
-getUsersData params =
+getUsersData : Hostname -> UserParams -> Http.Request (List UserRecord)
+getUsersData hostname params =
     let
         paramsList =
             [ ( "repos", params.repos )
@@ -21,8 +22,11 @@ getUsersData params =
         parsedParamsList =
             (String.join "&") <| List.map (\record -> first record ++ "=" ++ second record) paramsList
 
+        host =
+            getHost hostname
+
         url =
-            "https://githubtrends.herokuapp.com/api/users/most_popular?" ++ parsedParamsList
+            host ++ "/api/users/most_popular?" ++ parsedParamsList
     in
         Http.get url decodeUsersList
 
@@ -41,6 +45,6 @@ decodeUsersList =
     Decode.list decodeUsersRecord
 
 
-requestUsersData : UserParams -> Cmd Msg
-requestUsersData params =
-    Http.send Msgs.LoadUsersData (getUsersData params)
+requestUsersData : Hostname -> UserParams -> Cmd Msg
+requestUsersData hostname params =
+    Http.send Msgs.LoadUsersData (getUsersData hostname params)

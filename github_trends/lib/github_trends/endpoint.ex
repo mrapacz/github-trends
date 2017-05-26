@@ -27,6 +27,8 @@ defmodule GithubTrends.Endpoint do
     key: "_github_trends_key",
     signing_salt: "iw6A7H5q"
 
-  plug CORSPlug
+  if System.get_env("MIX_ENV") == "prod" do
+    plug CORSPlug
+  end
   plug GithubTrends.Router
 end

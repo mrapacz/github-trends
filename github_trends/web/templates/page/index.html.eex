@@ -1,5 +1,5 @@
 <!-- web/templates/page/index.html.eex -->
-<%= if @current_user do %>
+<%= if System.get_env("MIX_ENV") == "dev" || @current_user do %>
   <div id="elm-container"></div>
 <% else %>
   <%= link to: auth_path(@conn, :index, "github"), class: "btn btn-primary" do %>

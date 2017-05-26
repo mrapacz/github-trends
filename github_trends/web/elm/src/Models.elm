@@ -10,6 +10,7 @@ type alias Model =
     { name : String
     , avatar : String
     , route : Route
+    , host : Hostname
     , fetchedResources : FetchedResources
     , repositoriesParams : RepositoriesParams
     , usersParams : UserParams
@@ -17,11 +18,12 @@ type alias Model =
     }
 
 
-initialModel : Route -> Model
-initialModel route =
+initialModel : Hostname -> Route -> Model
+initialModel host route =
     { name = ""
     , avatar = ""
     , route = route
+    , host = host
     , fetchedResources = RepositoryRecordList []
     , repositoriesParams =
         { created = ""
@@ -52,6 +54,26 @@ type FetchedResources
     = RepositoryRecordList (List RepositoryRecord)
     | UserRecordList (List UserRecord)
     | IssueRecordList (List IssueRecord)
+
+
+
+-- FLAGS
+
+
+type Hostname
+    = Host String
+
+
+getHost : Hostname -> String
+getHost hostname =
+    case hostname of
+        Host name ->
+            name
+
+
+type alias Flags =
+    { host : String
+    }
 
 
 

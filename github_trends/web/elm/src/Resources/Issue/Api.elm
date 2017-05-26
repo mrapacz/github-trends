@@ -2,6 +2,7 @@ module Resources.Issue.Api exposing (..)
 
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
+import Models exposing (Hostname(Host), getHost)
 import String exposing (toLower)
 import Tuple exposing (first, second)
 import Msgs exposing (Msg)
@@ -9,8 +10,8 @@ import Resources.Issue.Models exposing (IssueParams, IssueRecord)
 import User.Models exposing (UserRecord)
 
 
-getIssuesData : IssueParams -> Http.Request (List IssueRecord)
-getIssuesData params =
+getIssuesData : Hostname -> IssueParams -> Http.Request (List IssueRecord)
+getIssuesData hostname params =
     let
         paramsList =
             [ ( "language", params.language )
@@ -22,8 +23,11 @@ getIssuesData params =
         parsedParamsList =
             (String.join "&") <| List.map (\record -> first record ++ "=" ++ second record) paramsList
 
+        host =
+            getHost hostname
+
         url =
-            "https://githubtrends.herokuapp.com/api/issues/most_popular?" ++ parsedParamsList
+            host ++ "/api/issues/most_popular?" ++ parsedParamsList
     in
         Http.get url decodeIssuesList
 
@@ -42,6 +46,6 @@ decodeIssuesList =
     Decode.list decodeIssueRecord
 
 
-requestIssuesData : IssueParams -> Cmd Msg
-requestIssuesData params =
-    Http.send Msgs.LoadIssuesData (getIssuesData params)
+requestIssuesData : Hostname -> IssueParams -> Cmd Msg
+requestIssuesData hostname params =
+    Http.send Msgs.LoadIssuesData (getIssuesData hostname params)
