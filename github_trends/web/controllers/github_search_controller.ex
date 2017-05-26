@@ -82,6 +82,7 @@ defmodule GithubTrends.GithubSearchController do
   defp extract_data(request) do
     case request do
       %{body: [items: items, total_count: _], headers: _} -> items
+
       _ -> []
     end
   end
