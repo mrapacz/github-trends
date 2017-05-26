@@ -55,6 +55,19 @@ type FetchedResources
 
 
 
+-- FLAGS
+
+
+type Hostname
+    = Host String
+
+
+type alias Flags =
+    { host : String
+    }
+
+
+
 -- ROUTING
 
 

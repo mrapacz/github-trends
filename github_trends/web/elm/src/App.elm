@@ -1,22 +1,22 @@
 module App exposing (..)
 
-import Json.Decode as Decode
-import Html exposing (..)
-import Http
 import Navigation exposing (Location)
 import Routing
 import Update exposing (update)
 import View exposing (view)
-import Models exposing (Model, initialModel)
+import Models exposing (Flags, Model, initialModel)
 import Msgs exposing (Msg)
 import User.Api exposing (requestUserInfo)
 
 
-init : Location -> ( Model, Cmd Msg )
-init location =
+init : Flags -> Location -> ( Model, Cmd Msg )
+init flags location =
     let
         currentRoute =
             Routing.parseLocation location
+
+        deb =
+            Debug.log "Flags" flags
     in
         ( initialModel currentRoute, requestUserInfo )
 
@@ -26,9 +26,9 @@ subscriptions model =
     Sub.none
 
 
-main : Program Never Model Msg
+main : Program Flags Model Msg
 main =
-    Navigation.program Msgs.OnLocationChange
+    Navigation.programWithFlags Msgs.OnLocationChange
         { init = init
         , view = view
         , update = update
