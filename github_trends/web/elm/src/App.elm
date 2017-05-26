@@ -18,7 +18,7 @@ init flags location =
         host =
             Host flags.host
     in
-        ( initialModel host currentRoute, requestUserInfo )
+        ( initialModel host currentRoute, requestUserInfo host )
 
 
 subscriptions : Model -> Sub Msg
