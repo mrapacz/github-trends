@@ -4,7 +4,7 @@ import Navigation exposing (Location)
 import Routing
 import Update exposing (update)
 import View exposing (view)
-import Models exposing (Flags, Model, initialModel)
+import Models exposing (Flags, Hostname(Host), Model, initialModel)
 import Msgs exposing (Msg)
 import User.Api exposing (requestUserInfo)
 
@@ -15,10 +15,10 @@ init flags location =
         currentRoute =
             Routing.parseLocation location
 
-        deb =
-            Debug.log "Flags" flags
+        host =
+            Host flags.host
     in
-        ( initialModel currentRoute, requestUserInfo )
+        ( initialModel host currentRoute, requestUserInfo )
 
 
 subscriptions : Model -> Sub Msg

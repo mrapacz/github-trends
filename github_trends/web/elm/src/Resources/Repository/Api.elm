@@ -2,6 +2,7 @@ module Resources.Repository.Api exposing (..)
 
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
+import Models exposing (Hostname, getHost)
 import String exposing (toLower)
 import Tuple exposing (first, second)
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord)
@@ -9,8 +10,8 @@ import User.Models exposing (UserRecord)
 import Msgs exposing (Msg)
 
 
-getRepositoriesData : RepositoriesParams -> Http.Request (List RepositoryRecord)
-getRepositoriesData params =
+getRepositoriesData : Hostname -> RepositoriesParams -> Http.Request (List RepositoryRecord)
+getRepositoriesData hostname params =
     let
         paramsList =
             [ ( "language", params.language )
@@ -22,8 +23,11 @@ getRepositoriesData params =
         parsedParamsList =
             (String.join "&") <| List.map (\record -> first record ++ "=" ++ second record) paramsList
 
+        host =
+            getHost hostname
+
         url =
-            "https://githubtrends.herokuapp.com/api/repositories/most_popular?" ++ parsedParamsList
+            host ++ "/api/repositories/most_popular?" ++ parsedParamsList
     in
         Http.get url decodeRepositoriesList
 
@@ -45,6 +49,6 @@ decodeRepositoriesList =
     Decode.list decodeRepositoryRecord
 
 
-requestRepositoriesData : RepositoriesParams -> Cmd Msg
-requestRepositoriesData params =
-    Http.send Msgs.LoadRepositoriesData (getRepositoriesData params)
+requestRepositoriesData : Hostname -> RepositoriesParams -> Cmd Msg
+requestRepositoriesData hostname params =
+    Http.send Msgs.LoadRepositoriesData (getRepositoriesData hostname params)
