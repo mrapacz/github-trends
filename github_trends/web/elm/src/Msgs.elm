@@ -14,7 +14,7 @@ import Resources.User.Msgs exposing (UsersMessage)
 
 type Msg
     = OnLocationChange Location
-    | LoadUserInfo (Result Http.Error User.Models.UserRecord)
+    | MkUserInfoMsg
     | MkRepositoriesMsg RepositoriesMessage
     | MkUsersMsg UsersMessage
     | MkIssuesMsg IssuesMessage

@@ -2,9 +2,10 @@ module User.Update exposing (..)
 
 import Models exposing (Model)
 import Msgs exposing (Msg(LoadUserInfo))
+import User.Msgs exposing (UserInfoMessage(LoadUserInfo))
 
 
-userInfoUpdate : Msg -> Model -> ( Model, Cmd Msg )
+userInfoUpdate : UserInfoMessage -> Model -> ( Model, Cmd UserInfoMessage )
 userInfoUpdate msg model =
     case msg of
         LoadUserInfo (Ok userData) ->
@@ -16,7 +17,4 @@ userInfoUpdate msg model =
             )
 
         LoadUserInfo (Err message) ->
-            ( model, Cmd.none )
-
-        _ ->
             ( model, Cmd.none )

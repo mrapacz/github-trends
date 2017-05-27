@@ -4,7 +4,7 @@ import Http
 import Json.Decode as Decode
 import Models exposing (Hostname, getHost)
 import User.Models exposing (UserRecord)
-import Msgs exposing (Msg)
+import User.Msgs exposing (UserInfoMessage(LoadUserInfo))
 
 
 getUserInfo : Hostname -> Http.Request UserRecord
@@ -26,6 +26,6 @@ decodeUserRecord =
         (Decode.field "avatar" Decode.string)
 
 
-requestUserInfo : Hostname -> Cmd Msg
+requestUserInfo : Hostname -> Cmd UserInfoMessage
 requestUserInfo hostname =
-    Http.send Msgs.LoadUserInfo (getUserInfo hostname)
+    Http.send LoadUserInfo (getUserInfo hostname)

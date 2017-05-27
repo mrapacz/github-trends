@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Models exposing (Model, FetchedResources(..))
 import Msgs exposing (Msg(..))
+import Resources.Common.View exposing (fetchedResourcesView)
 import Resources.Issue.View exposing (issuesView, listIssues)
 import Resources.Repository.View exposing (listRepositories, repositoriesView)
 import Resources.User.View exposing (listUsers, usersView)
@@ -38,25 +39,8 @@ mainView model =
         , repositoriesView
         , usersView
         , issuesView
-        , div [ class "content-section" ]
-            [ div [ class "results-section" ]
-                [ displayFetchedResources model.fetchedResources
-                ]
-            ]
+        , fetchedResourcesView model.fetchedResources
         ]
-
-
-displayFetchedResources : FetchedResources -> Html Msg
-displayFetchedResources fetchedResources =
-    case fetchedResources of
-        RepositoryRecordList repositories ->
-            listRepositories repositories
-
-        UserRecordList users ->
-            listUsers users
-
-        IssueRecordList issues ->
-            listIssues issues
 
 
 

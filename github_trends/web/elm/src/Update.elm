@@ -20,8 +20,10 @@ update msg model =
             in
                 ( { model | route = newRoute }, Cmd.none )
 
-        LoadUserInfo _ ->
-            userInfoUpdate msg model
+        MkUserInfoMsg userInfoMessage ->
+            case userInfoUpdate userInfoMessage of
+                ( model, cmd ) ->
+                    ( model, map MkUserInfoMsg cmd )
 
         MkRepositoriesMsg repositoriesMessage ->
             case repositoryUpdate repositoriesMessage model of
