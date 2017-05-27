@@ -2,13 +2,13 @@ module User.View exposing (..)
 
 import Html exposing (Html, div, img, p, text)
 import Html.Attributes exposing (class, src)
-import Models exposing (Model)
 import Msgs exposing (Msg)
+import User.Models exposing (UserRecord)
 
 
-userInfoView : Model -> Html Msg
-userInfoView model =
+userInfoView : UserRecord -> Html Msg
+userInfoView userInfo =
     div [ class "user-section" ]
-        [ img [ class "user-avatar", src model.avatar ] []
-        , p [ class "user-name" ] [ text model.name ]
+        [ img [ class "user-avatar", src userInfo.avatar ] []
+        , p [ class "user-name" ] [ text userInfo.name ]
         ]

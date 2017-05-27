@@ -1,7 +1,7 @@
-module User.Models exposing (UserRecord)
+module User.Models exposing (UserInfoRecord)
 
 
-type alias UserRecord =
+type alias UserInfoRecord =
     { name : String
     , avatar : String
     }

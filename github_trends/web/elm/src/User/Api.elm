@@ -3,6 +3,7 @@ module User.Api exposing (requestUserInfo)
 import Http
 import Json.Decode as Decode
 import Models exposing (Hostname, getHost)
+import Resources.User.Models exposing (UserRecord)
 import User.Models exposing (UserRecord)
 import User.Msgs exposing (UserInfoMessage(LoadUserInfo))
 

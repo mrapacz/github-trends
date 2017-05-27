@@ -1,7 +1,6 @@
 module View exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
 import Models exposing (Model, FetchedResources(..))
 import Msgs exposing (Msg(..))
 import Resources.Common.View exposing (fetchedResourcesView)
@@ -34,7 +33,7 @@ page model =
 mainView : Model -> Html Msg
 mainView model =
     div []
-        [ userInfoView model
+        [ userInfoView model.userInfo
         , h2 [] [ text "Welcome to GitHub trends" ]
         , repositoriesView
         , usersView

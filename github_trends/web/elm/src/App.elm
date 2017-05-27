@@ -5,7 +5,7 @@ import Routing
 import Update exposing (update)
 import View exposing (view)
 import Models exposing (Flags, Hostname(Host), Model, initialModel)
-import Msgs exposing (Msg)
+import Msgs exposing (Msg(OnLocationChange))
 import User.Api exposing (requestUserInfo)
 
 
@@ -28,7 +28,7 @@ subscriptions model =
 
 main : Program Flags Model Msg
 main =
-    Navigation.programWithFlags Msgs.OnLocationChange
+    Navigation.programWithFlags OnLocationChange
         { init = init
         , view = view
         , update = update
