@@ -7,6 +7,7 @@ import Msgs exposing (Msg(..))
 import Resources.Issue.View exposing (issuesView, listIssues)
 import Resources.Repository.View exposing (listRepositories, repositoriesView)
 import Resources.User.View exposing (listUsers, usersView)
+import User.View exposing (userInfoView)
 
 
 view : Model -> Html Msg
@@ -32,10 +33,7 @@ page model =
 mainView : Model -> Html Msg
 mainView model =
     div []
-        [ div [ class "user-section" ]
-            [ img [ class "user-avatar", src model.avatar ] []
-            , p [ class "user-name" ] [ text model.name ]
-            ]
+        [ userInfoView model
         , h2 [] [ text "Welcome to GitHub trends" ]
         , repositoriesView
         , usersView
