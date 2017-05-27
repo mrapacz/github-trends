@@ -1,11 +1,11 @@
 module Resources.User.Update exposing (..)
 
 import Models exposing (FetchedResources(UserRecordList), Model)
-import Msgs exposing (Msg(FetchUsers, LoadUsersData, NewFollowersUsers, NewOrderUsersOption, NewReposUsers, NewSortUsersOption))
 import Resources.User.Api exposing (requestUsersData)
+import Resources.User.Msgs exposing (UsersMessage(FetchUsers, LoadUsersData, NewFollowersUsers, NewOrderUsersOption, NewReposUsers, NewSortUsersOption))
 
 
-userUpdate : Msg -> Model -> ( Model, Cmd Msg )
+userUpdate : UsersMessage -> Model -> ( Model, Cmd UsersMessage )
 userUpdate msg model =
     case msg of
         LoadUsersData (Ok users) ->
@@ -62,6 +62,3 @@ userUpdate msg model =
                     Debug.log "users order" { oldUsersParams | order = orderOption }
             in
                 ( { model | usersParams = newUsersParams }, Cmd.none )
-
-        _ ->
-            ( model, Cmd.none )

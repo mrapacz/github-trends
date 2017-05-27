@@ -23,45 +23,16 @@ update msg model =
         LoadUserInfo _ ->
             userInfoUpdate msg model
 
-        -- REPOSITORIES LOAD
-        LoadRepositoriesData _ ->
-            repositoryUpdate msg model
+        MkRepositoriesMsg repositoriesMessage ->
+            case repositoryUpdate repositoriesMessage model of
+                ( model, cmd ) ->
+                    ( model, map MkRepositoriesMsg cmd )
 
-        FetchRepositories ->
-            repositoryUpdate msg model
+        MkUsersMsg usersMessage ->
+            case userUpdate usersMessage model of
+                ( model, cmd ) ->
+                    ( model, map MkUsersMsg cmd )
 
-        NewCreatedRepositories _ ->
-            repositoryUpdate msg model
-
-        NewLanguageRepositories _ ->
-            repositoryUpdate msg model
-
-        NewSortRepositoriesOption _ ->
-            repositoryUpdate msg model
-
-        NewOrderRepositoriesOption _ ->
-            repositoryUpdate msg model
-
-        -- USERS LOAD
-        LoadUsersData data ->
-            userUpdate msg model
-
-        FetchUsers ->
-            userUpdate msg model
-
-        NewReposUsers repos ->
-            userUpdate msg model
-
-        NewFollowersUsers followers ->
-            userUpdate msg model
-
-        NewSortUsersOption sortOption ->
-            userUpdate msg model
-
-        NewOrderUsersOption orderOption ->
-            userUpdate msg model
-
-        --ISSUES LOAD
         MkIssuesMsg issuesMessage ->
             case issueUpdate issuesMessage model of
                 ( model, cmd ) ->

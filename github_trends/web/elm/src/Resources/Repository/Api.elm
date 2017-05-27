@@ -8,6 +8,7 @@ import Tuple exposing (first, second)
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord)
 import User.Models exposing (UserRecord)
 import Msgs exposing (Msg)
+import Resources.Repository.Msgs exposing (RepositoriesMessage(LoadRepositoriesData))
 
 
 getRepositoriesData : Hostname -> RepositoriesParams -> Http.Request (List RepositoryRecord)
@@ -49,6 +50,6 @@ decodeRepositoriesList =
     Decode.list decodeRepositoryRecord
 
 
-requestRepositoriesData : Hostname -> RepositoriesParams -> Cmd Msg
+requestRepositoriesData : Hostname -> RepositoriesParams -> Cmd RepositoriesMessage
 requestRepositoriesData hostname params =
-    Http.send Msgs.LoadRepositoriesData (getRepositoriesData hostname params)
+    Http.send LoadRepositoriesData (getRepositoriesData hostname params)

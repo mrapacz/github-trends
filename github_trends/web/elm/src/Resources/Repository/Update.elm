@@ -1,11 +1,11 @@
 module Resources.Repository.Update exposing (..)
 
 import Models exposing (FetchedResources(RepositoryRecordList), Model)
-import Msgs exposing (Msg(FetchRepositories, LoadRepositoriesData, NewCreatedRepositories, NewLanguageRepositories, NewOrderRepositoriesOption, NewSortRepositoriesOption))
 import Resources.Repository.Api exposing (requestRepositoriesData)
+import Resources.Repository.Msgs exposing (RepositoriesMessage(FetchRepositories, LoadRepositoriesData, NewCreatedRepositories, NewLanguageRepositories, NewOrderRepositoriesOption, NewSortRepositoriesOption))
 
 
-repositoryUpdate : Msg -> Model -> ( Model, Cmd Msg )
+repositoryUpdate : RepositoriesMessage -> Model -> ( Model, Cmd RepositoriesMessage )
 repositoryUpdate msg model =
     case msg of
         LoadRepositoriesData (Ok repositories) ->
@@ -62,6 +62,3 @@ repositoryUpdate msg model =
                     Debug.log "repositories order" { oldRepositoriesParams | order = orderOption }
             in
                 ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
-
-        _ ->
-            ( model, Cmd.none )
