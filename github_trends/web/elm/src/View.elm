@@ -1,6 +1,5 @@
 module View exposing (..)
 
-import String exposing (concat)
 import Select
 import Html exposing (..)
 import Html.Attributes exposing (..)
