@@ -1,11 +1,11 @@
 module Resources.Issue.Update exposing (..)
 
 import Models exposing (FetchedResources(IssueRecordList), Model)
-import Msgs exposing (Msg(FetchIssues, LoadIssuesData, NewCommentsIssues, NewLanguageIssues, NewOrderIssuesOption, NewSortIssuesOption))
 import Resources.Issue.Api exposing (requestIssuesData)
+import Resources.Issue.Msgs exposing (IssuesMessage(FetchIssues, LoadIssuesData, NewCommentsIssues, NewLanguageIssues, NewOrderIssuesOption, NewSortIssuesOption))
 
 
-issueUpdate : Msg -> Model -> ( Model, Cmd Msg )
+issueUpdate : IssuesMessage -> Model -> ( Model, Cmd IssuesMessage )
 issueUpdate msg model =
     case msg of
         -- ISSUES LOAD
@@ -63,6 +63,3 @@ issueUpdate msg model =
                     Debug.log "issues order" { oldIssuesParams | order = orderOption }
             in
                 ( { model | issuesParams = newIssuesParams }, Cmd.none )
-
-        _ ->
-            ( model, Cmd.none )

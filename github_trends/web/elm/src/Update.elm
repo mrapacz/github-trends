@@ -2,6 +2,7 @@ module Update exposing (..)
 
 import Models exposing (Model, FetchedResources(..))
 import Msgs exposing (Msg(..))
+import Platform.Cmd exposing (map)
 import Resources.Issue.Update exposing (issueUpdate)
 import Resources.Repository.Update exposing (repositoryUpdate)
 import Routing exposing (parseLocation)
@@ -61,20 +62,7 @@ update msg model =
             userUpdate msg model
 
         --ISSUES LOAD
-        LoadIssuesData data ->
-            issueUpdate msg model
-
-        FetchIssues ->
-            issueUpdate msg model
-
-        NewCommentsIssues comments ->
-            issueUpdate msg model
-
-        NewLanguageIssues language ->
-            issueUpdate msg model
-
-        NewSortIssuesOption sortOption ->
-            issueUpdate msg model
-
-        NewOrderIssuesOption _ ->
-            issueUpdate msg model
+        MkIssuesMsg issuesMessage ->
+            case issueUpdate issuesMessage model of
+                ( model, cmd ) ->
+                    ( model, map MkIssuesMsg cmd )

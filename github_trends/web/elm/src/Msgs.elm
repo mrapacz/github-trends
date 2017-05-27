@@ -7,6 +7,7 @@ import Resources.Common.Models exposing (SortOrder)
 import User.Models exposing (UserRecord)
 import Navigation exposing (Location)
 import Resources.Issue.Models exposing (IssueRecord, SortIssues)
+import Resources.Issue.Msgs exposing (IssuesMessage)
 
 
 type Msg
@@ -24,9 +25,4 @@ type Msg
     | NewSortUsersOption SortUsers
     | NewOrderUsersOption SortOrder
     | FetchUsers
-    | LoadIssuesData (Result Http.Error (List IssueRecord))
-    | NewLanguageIssues String
-    | NewCommentsIssues String
-    | NewSortIssuesOption SortIssues
-    | NewOrderIssuesOption SortOrder
-    | FetchIssues
+    | MkIssuesMsg IssuesMessage

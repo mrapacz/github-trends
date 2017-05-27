@@ -3,9 +3,10 @@ module Resources.Issue.View exposing (listIssues, issuesView)
 import Html exposing (..)
 import Html.Attributes exposing (class, href, placeholder)
 import Html.Events exposing (onClick, onInput)
-import Msgs exposing (Msg(FetchIssues, NewCommentsIssues, NewLanguageIssues, NewOrderIssuesOption, NewSortIssuesOption))
+import Msgs exposing (Msg)
 import Resources.Common.Models exposing (orderOptions)
 import Resources.Issue.Models exposing (IssueRecord, sortIssuesOptions)
+import Resources.Issue.Msgs exposing (IssuesMessage(FetchIssues, NewCommentsIssues, NewLanguageIssues, NewOrderIssuesOption, NewSortIssuesOption))
 import Select
 
 
@@ -26,11 +27,12 @@ displayIssue issue =
 
 issuesView : Html Msg
 issuesView =
-    div [ class "content-section" ]
-        [ h3 [] [ text "Issues:" ]
-        , input [ placeholder "Comments number", onInput NewCommentsIssues ] []
-        , input [ placeholder "Language", onInput NewLanguageIssues ] []
-        , Select.from sortIssuesOptions NewSortIssuesOption
-        , Select.from orderOptions NewOrderIssuesOption
-        , button [ onClick FetchIssues ] [ text "Submit" ]
-        ]
+    --    div [ class "content-section" ]
+    --        [ h3 [] [ text "Issues:" ]
+    --        , input [ placeholder "Comments number", onInput NewCommentsIssues ] []
+    --        , input [ placeholder "Language", onInput NewLanguageIssues ] []
+    --        , Select.from sortIssuesOptions NewSortIssuesOption
+    --        , Select.from orderOptions NewOrderIssuesOption
+    --        , button [ onClick FetchIssues ] [ text "Submit" ]
+    --        ]
+    text "xd"
