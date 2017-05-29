@@ -4,11 +4,11 @@ import Resources.Issue.Models exposing (IssueParams, IssueRecord, SortIssues(..)
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord, SortRepositories(..))
 import Resources.User.Models exposing (UserParams, SortUsers(..))
 import Resources.Common.Models exposing (SortOrder(..))
-import User.Models exposing (UserRecord)
+import User.Models exposing (UserInfoRecord)
 
 
 type alias Model =
-    { userInfo : UserRecord
+    { userInfo : UserInfoRecord
     , route : Route
     , host : Hostname
     , fetchedResources : FetchedResources

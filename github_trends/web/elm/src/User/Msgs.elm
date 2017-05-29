@@ -1,8 +1,8 @@
 module User.Msgs exposing (..)
 
 import Http
-import User.Models
+import User.Models exposing (UserInfoRecord)
 
 
 type UserInfoMessage
-    = LoadUserInfo (Result Http.Error User.Models.UserRecord)
+    = LoadUserInfo (Result Http.Error UserInfoRecord)

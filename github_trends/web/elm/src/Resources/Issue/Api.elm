@@ -8,7 +8,6 @@ import String exposing (toLower)
 import Tuple exposing (first, second)
 import Msgs exposing (Msg)
 import Resources.Issue.Models exposing (IssueParams, IssueRecord)
-import User.Models exposing (UserRecord)
 
 
 getIssuesData : Hostname -> IssueParams -> Http.Request (List IssueRecord)

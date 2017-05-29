@@ -6,7 +6,6 @@ import Models exposing (Hostname, getHost)
 import String exposing (toLower)
 import Tuple exposing (first, second)
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord)
-import User.Models exposing (UserRecord)
 import Msgs exposing (Msg)
 import Resources.Repository.Msgs exposing (RepositoriesMessage(LoadRepositoriesData))
 

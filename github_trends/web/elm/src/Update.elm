@@ -21,7 +21,7 @@ update msg model =
                 ( { model | route = newRoute }, Cmd.none )
 
         MkUserInfoMsg userInfoMessage ->
-            case userInfoUpdate userInfoMessage of
+            case userInfoUpdate userInfoMessage model of
                 ( model, cmd ) ->
                     ( model, map MkUserInfoMsg cmd )
 
