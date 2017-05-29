@@ -3,11 +3,11 @@ module Resources.Issue.Api exposing (..)
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
 import Models exposing (Hostname(Host), getHost)
+import Resources.Issue.Msgs exposing (IssuesMessage(LoadIssuesData))
 import String exposing (toLower)
 import Tuple exposing (first, second)
 import Msgs exposing (Msg)
 import Resources.Issue.Models exposing (IssueParams, IssueRecord)
-import User.Models exposing (UserRecord)
 
 
 getIssuesData : Hostname -> IssueParams -> Http.Request (List IssueRecord)
@@ -46,6 +46,6 @@ decodeIssuesList =
     Decode.list decodeIssueRecord
 
 
-requestIssuesData : Hostname -> IssueParams -> Cmd Msg
+requestIssuesData : Hostname -> IssueParams -> Cmd IssuesMessage
 requestIssuesData hostname params =
-    Http.send Msgs.LoadIssuesData (getIssuesData hostname params)
+    Http.send LoadIssuesData (getIssuesData hostname params)

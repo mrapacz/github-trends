@@ -3,11 +3,11 @@ module User.Api exposing (requestUserInfo)
 import Http
 import Json.Decode as Decode
 import Models exposing (Hostname, getHost)
-import User.Models exposing (UserRecord)
-import Msgs exposing (Msg)
+import User.Models exposing (UserInfoRecord)
+import User.Msgs exposing (UserInfoMessage(LoadUserInfo))
 
 
-getUserInfo : Hostname -> Http.Request UserRecord
+getUserInfo : Hostname -> Http.Request UserInfoRecord
 getUserInfo hostname =
     let
         host =
@@ -19,13 +19,13 @@ getUserInfo hostname =
         Http.get url decodeUserRecord
 
 
-decodeUserRecord : Decode.Decoder UserRecord
+decodeUserRecord : Decode.Decoder UserInfoRecord
 decodeUserRecord =
-    Decode.map2 UserRecord
+    Decode.map2 UserInfoRecord
         (Decode.field "name" Decode.string)
         (Decode.field "avatar" Decode.string)
 
 
-requestUserInfo : Hostname -> Cmd Msg
+requestUserInfo : Hostname -> Cmd UserInfoMessage
 requestUserInfo hostname =
-    Http.send Msgs.LoadUserInfo (getUserInfo hostname)
+    Http.send LoadUserInfo (getUserInfo hostname)

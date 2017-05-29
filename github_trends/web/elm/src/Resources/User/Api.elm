@@ -5,6 +5,7 @@ import Json.Decode as Decode exposing (null, oneOf)
 import Models exposing (Hostname, getHost)
 import Resources.User.Models exposing (UserParams, UserRecord)
 import Msgs exposing (Msg)
+import Resources.User.Msgs exposing (UsersMessage(LoadUsersData))
 import String exposing (toLower)
 import Tuple exposing (first, second)
 
@@ -45,6 +46,6 @@ decodeUsersList =
     Decode.list decodeUsersRecord
 
 
-requestUsersData : Hostname -> UserParams -> Cmd Msg
+requestUsersData : Hostname -> UserParams -> Cmd UsersMessage
 requestUsersData hostname params =
-    Http.send Msgs.LoadUsersData (getUsersData hostname params)
+    Http.send LoadUsersData (getUsersData hostname params)

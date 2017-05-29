@@ -1,11 +1,12 @@
 module App exposing (..)
 
 import Navigation exposing (Location)
+import Platform.Cmd exposing (map)
 import Routing
 import Update exposing (update)
 import View exposing (view)
 import Models exposing (Flags, Hostname(Host), Model, initialModel)
-import Msgs exposing (Msg)
+import Msgs exposing (Msg(MkUserInfoMsg, OnLocationChange))
 import User.Api exposing (requestUserInfo)
 
 
@@ -18,7 +19,7 @@ init flags location =
         host =
             Host flags.host
     in
-        ( initialModel host currentRoute, requestUserInfo host )
+        ( initialModel host currentRoute, map MkUserInfoMsg (requestUserInfo host) )
 
 
 subscriptions : Model -> Sub Msg
@@ -28,7 +29,7 @@ subscriptions model =
 
 main : Program Flags Model Msg
 main =
-    Navigation.programWithFlags Msgs.OnLocationChange
+    Navigation.programWithFlags OnLocationChange
         { init = init
         , view = view
         , update = update

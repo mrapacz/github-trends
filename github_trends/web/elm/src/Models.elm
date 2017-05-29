@@ -2,13 +2,13 @@ module Models exposing (..)
 
 import Resources.Issue.Models exposing (IssueParams, IssueRecord, SortIssues(..))
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord, SortRepositories(..))
-import Resources.User.Models exposing (UserParams, UserRecord, SortUsers(..))
+import Resources.User.Models exposing (UserParams, SortUsers(..))
 import Resources.Common.Models exposing (SortOrder(..))
+import User.Models exposing (UserInfoRecord)
 
 
 type alias Model =
-    { name : String
-    , avatar : String
+    { userInfo : UserInfoRecord
     , route : Route
     , host : Hostname
     , fetchedResources : FetchedResources
@@ -20,8 +20,10 @@ type alias Model =
 
 initialModel : Hostname -> Route -> Model
 initialModel host route =
-    { name = ""
-    , avatar = ""
+    { userInfo =
+        { name = ""
+        , avatar = ""
+        }
     , route = route
     , host = host
     , fetchedResources = RepositoryRecordList []
@@ -52,7 +54,7 @@ initialModel host route =
 
 type FetchedResources
     = RepositoryRecordList (List RepositoryRecord)
-    | UserRecordList (List UserRecord)
+    | UserRecordList (List Resources.User.Models.UserRecord)
     | IssueRecordList (List IssueRecord)
 
 
