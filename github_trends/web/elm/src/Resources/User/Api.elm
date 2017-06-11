@@ -3,11 +3,11 @@ module Resources.User.Api exposing (..)
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
 import Models exposing (Hostname, getHost)
+import Resources.Common.Api exposing (buildUrl)
 import Resources.User.Models exposing (UserParams, UserRecord)
 import Msgs exposing (Msg)
 import Resources.User.Msgs exposing (UsersMessage(LoadUsersData))
 import String exposing (toLower)
-import Tuple exposing (first, second)
 
 
 getUsersData : Hostname -> UserParams -> Http.Request (List UserRecord)
@@ -20,14 +20,8 @@ getUsersData hostname params =
             , ( "order", toLower <| toString <| params.order )
             ]
 
-        parsedParamsList =
-            (String.join "&") <| List.map (\record -> first record ++ "=" ++ second record) paramsList
-
-        host =
-            getHost hostname
-
         url =
-            host ++ "/api/users/most_popular?" ++ parsedParamsList
+            buildUrl hostname "users" paramsList
     in
         Http.get url decodeUsersList
 

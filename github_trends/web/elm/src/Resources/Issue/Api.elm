@@ -3,10 +3,9 @@ module Resources.Issue.Api exposing (..)
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
 import Models exposing (Hostname(Host), getHost)
+import Resources.Common.Api exposing (buildUrl)
 import Resources.Issue.Msgs exposing (IssuesMessage(LoadIssuesData))
 import String exposing (toLower)
-import Tuple exposing (first, second)
-import Msgs exposing (Msg)
 import Resources.Issue.Models exposing (IssueParams, IssueRecord)
 
 
@@ -20,14 +19,8 @@ getIssuesData hostname params =
             , ( "order", toLower <| toString <| params.order )
             ]
 
-        parsedParamsList =
-            (String.join "&") <| List.map (\record -> first record ++ "=" ++ second record) paramsList
-
-        host =
-            getHost hostname
-
         url =
-            host ++ "/api/issues/most_popular?" ++ parsedParamsList
+            buildUrl hostname "issues" paramsList
     in
         Http.get url decodeIssuesList
 
