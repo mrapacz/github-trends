@@ -9,18 +9,18 @@ repositoryUpdate : RepositoriesMessage -> Model -> ( Model, Cmd RepositoriesMess
 repositoryUpdate msg model =
     case msg of
         LoadRepositoriesData (Ok repositories) ->
-            ( { model | fetchedResources = RepositoryRecordList repositories }, Cmd.none )
+            { model | fetchedResources = RepositoryRecordList repositories } ! []
 
         LoadRepositoriesData (Err message) ->
             let
                 debugMessage =
                     Debug.log "err repositories" message
             in
-                ( model, Cmd.none )
+                model ! []
 
         -- REPOSITORIES FETCH
         FetchRepositories ->
-            ( model, requestRepositoriesData model.host model.repositoriesParams )
+            model ! [ requestRepositoriesData model.host model.repositoriesParams ]
 
         -- REPOSITORIES UPDATE
         NewCreatedRepositories created ->
@@ -31,7 +31,7 @@ repositoryUpdate msg model =
                 newRepositoriesParams =
                     Debug.log "repositories created" { oldRepositoriesParams | created = created }
             in
-                ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
+                { model | repositoriesParams = newRepositoriesParams } ! []
 
         NewLanguageRepositories language ->
             let
@@ -41,7 +41,7 @@ repositoryUpdate msg model =
                 newRepositoriesParams =
                     Debug.log "repositories language" { oldRepositoriesParams | language = language }
             in
-                ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
+                { model | repositoriesParams = newRepositoriesParams } ! []
 
         NewSortRepositoriesOption sortOption ->
             let
@@ -51,7 +51,7 @@ repositoryUpdate msg model =
                 newRepositoriesParams =
                     Debug.log "repositories sort" { oldRepositoriesParams | sort = sortOption }
             in
-                ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
+                { model | repositoriesParams = newRepositoriesParams } ! []
 
         NewOrderRepositoriesOption orderOption ->
             let
@@ -61,4 +61,4 @@ repositoryUpdate msg model =
                 newRepositoriesParams =
                     Debug.log "repositories order" { oldRepositoriesParams | order = orderOption }
             in
-                ( { model | repositoriesParams = newRepositoriesParams }, Cmd.none )
+                { model | repositoriesParams = newRepositoriesParams } ! []
