@@ -5,7 +5,6 @@ import Json.Decode as Decode exposing (null, oneOf)
 import Models exposing (Hostname, getHost)
 import Resources.Common.Api exposing (buildUrl)
 import Resources.User.Models exposing (UserParams, UserRecord)
-import Msgs exposing (Msg)
 import Resources.User.Msgs exposing (UsersMessage(LoadUsersData))
 import String exposing (toLower)
 

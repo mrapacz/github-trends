@@ -1,9 +1,10 @@
 module Resources.Common.Api exposing (..)
 
-import Models exposing (getHost)
+import Models exposing (Hostname, getHost)
 import Tuple exposing (first, second)
 
 
+buildUrl : Hostname -> String -> List ( String, String ) -> String
 buildUrl hostname resource paramsList =
     let
         parsedParamsList =
