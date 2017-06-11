@@ -10,18 +10,18 @@ issueUpdate msg model =
     case msg of
         -- ISSUES LOAD
         LoadIssuesData (Ok issues) ->
-            ( { model | fetchedResources = IssueRecordList issues }, Cmd.none )
+            { model | fetchedResources = IssueRecordList issues } ! []
 
         LoadIssuesData (Err message) ->
             let
                 debugMessage =
                     Debug.log "err issues" message
             in
-                ( model, Cmd.none )
+                model ! []
 
         -- ISSUES FETCH
         FetchIssues ->
-            ( model, requestIssuesData model.host model.issuesParams )
+            model ! [ requestIssuesData model.host model.issuesParams ]
 
         -- ISSUES UPDATE
         NewCommentsIssues comments ->
@@ -32,7 +32,7 @@ issueUpdate msg model =
                 newIssuesParams =
                     Debug.log "issues comments" { oldIssuesParams | comments = comments }
             in
-                ( { model | issuesParams = newIssuesParams }, Cmd.none )
+                { model | issuesParams = newIssuesParams } ! []
 
         NewLanguageIssues language ->
             let
@@ -42,7 +42,7 @@ issueUpdate msg model =
                 newIssuesParams =
                     Debug.log "issues language" { oldIssuesParams | language = language }
             in
-                ( { model | issuesParams = newIssuesParams }, Cmd.none )
+                { model | issuesParams = newIssuesParams } ! []
 
         NewSortIssuesOption sortOption ->
             let
@@ -52,7 +52,7 @@ issueUpdate msg model =
                 newIssuesParams =
                     Debug.log "issues sort" { oldIssuesParams | sort = sortOption }
             in
-                ( { model | issuesParams = newIssuesParams }, Cmd.none )
+                { model | issuesParams = newIssuesParams } ! []
 
         NewOrderIssuesOption orderOption ->
             let
@@ -62,4 +62,4 @@ issueUpdate msg model =
                 newIssuesParams =
                     Debug.log "issues order" { oldIssuesParams | order = orderOption }
             in
-                ( { model | issuesParams = newIssuesParams }, Cmd.none )
+                { model | issuesParams = newIssuesParams } ! []

@@ -3,10 +3,9 @@ module Resources.Repository.Api exposing (..)
 import Http
 import Json.Decode as Decode exposing (null, oneOf)
 import Models exposing (Hostname, getHost)
+import Resources.Common.Api exposing (buildUrl)
 import String exposing (toLower)
-import Tuple exposing (first, second)
 import Resources.Repository.Models exposing (RepositoriesParams, RepositoryRecord)
-import Msgs exposing (Msg)
 import Resources.Repository.Msgs exposing (RepositoriesMessage(LoadRepositoriesData))
 
 
@@ -20,14 +19,8 @@ getRepositoriesData hostname params =
             , ( "order", toLower <| toString <| params.order )
             ]
 
-        parsedParamsList =
-            (String.join "&") <| List.map (\record -> first record ++ "=" ++ second record) paramsList
-
-        host =
-            getHost hostname
-
         url =
-            host ++ "/api/repositories/most_popular?" ++ parsedParamsList
+            buildUrl hostname "repositories" paramsList
     in
         Http.get url decodeRepositoriesList
 

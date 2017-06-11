@@ -25,5 +25,6 @@ type SortIssues
     | Updated
 
 
+sortIssuesOptions : List SortIssues
 sortIssuesOptions =
     [ Comments, Created, Updated ]

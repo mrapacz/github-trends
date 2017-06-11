@@ -18,24 +18,24 @@ update msg model =
                 newRoute =
                     parseLocation location
             in
-                ( { model | route = newRoute }, Cmd.none )
+                { model | route = newRoute } ! []
 
         MkUserInfoMsg userInfoMessage ->
             case userInfoUpdate userInfoMessage model of
                 ( model, cmd ) ->
-                    ( model, map MkUserInfoMsg cmd )
+                    model ! [ map MkUserInfoMsg cmd ]
 
         MkRepositoriesMsg repositoriesMessage ->
             case repositoryUpdate repositoriesMessage model of
                 ( model, cmd ) ->
-                    ( model, map MkRepositoriesMsg cmd )
+                    model ! [ map MkRepositoriesMsg cmd ]
 
         MkUsersMsg usersMessage ->
             case userUpdate usersMessage model of
                 ( model, cmd ) ->
-                    ( model, map MkUsersMsg cmd )
+                    model ! [ map MkUsersMsg cmd ]
 
         MkIssuesMsg issuesMessage ->
             case issueUpdate issuesMessage model of
                 ( model, cmd ) ->
-                    ( model, map MkIssuesMsg cmd )
+                    model ! [ map MkIssuesMsg cmd ]

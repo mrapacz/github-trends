@@ -6,5 +6,6 @@ type SortOrder
     | Desc
 
 
+orderOptions : List SortOrder
 orderOptions =
     [ Asc, Desc ]

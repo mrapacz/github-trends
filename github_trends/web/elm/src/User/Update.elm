@@ -14,7 +14,7 @@ userInfoUpdate msg model =
                     , avatar = userData.avatar
                     }
             in
-                ( { model | userInfo = newUserInfo }, Cmd.none )
+                { model | userInfo = newUserInfo } ! []
 
         LoadUserInfo (Err message) ->
-            ( model, Cmd.none )
+            model ! []
